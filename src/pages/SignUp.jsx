@@ -11,34 +11,36 @@ const SignUpForm = () => {
   const [password, setPassword] = useState("");
   //const navigate=useNavigate()
   const authAuth_COntainer = document.querySelector(".Auth_COntainer");
-
+const inputs={ email, password, username }
   function removecard() {
     authAuth_COntainer.className = "d-none";
   }
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    try {
-      setIsLoading(true);
+    if(!email||!password||!username){alert("Yor Data is invalid")}
+   
+    else{ 
+      try {
+        setIsLoading(true);
+        
       const response = await ax.post(
-        "https://diaryb.onrender.com/api/user/signup",
-        { email, password, username }
-      );
-      if (response.data) {
-        removecard();
-        window.location.reload()
+      "https://diaryb.onrender.com/api/user/signup",
+      inputs
+    );
+    if (response.data) {
+      removecard();
+      window.location.reload()
 
 
-      }
-      localStorage.setItem("user", JSON.stringify(response.data));
-      console.log(response.data);
-      // navigate('/')
-      setIsLoading(false);
-              window.location.reload()
-
-    } catch (error) {
-      setIsLoading(false);
     }
+    localStorage.setItem("user", JSON.stringify(response.data));
+    console.log(response.data);
+    setIsLoading(false);
+            window.location.reload()
+
+  } catch (error) {
+    setIsLoading(false);
+  }}
   };
 
   return (
@@ -105,6 +107,7 @@ const SignUpForm = () => {
               </button>
             ) : (
               <button
+              
                 type="submit"
                 className="btn_Login btn rounded-5 p-2 form-btn    m-auto   d-block"
               >
