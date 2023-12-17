@@ -61,6 +61,12 @@
   "devDependencies": {
     "gh-pages": "^6.0.0"
   },
+  "engines": {
+    "node": ">=14.20.1"
+  }
+
+
+  
   "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
   "main": "index.js",
   "author": "",
